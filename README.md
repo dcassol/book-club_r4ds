@@ -2,8 +2,7 @@
 
 ## The Book
 
-
-> ![](https://www.google.com/url?sa=i&url=https%3A%2F%2Fr4ds.had.co.nz%2F&psig=AOvVaw3_AYgTjSYvphJAEsNhm-cb&ust=1596555118758000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNCU27it_-oCFQAAAAAdAAAAABAD)
+> ![](https://r4ds.had.co.nz/cover.png)
 
 > Wickham, H. & Grolemund, G. *R for Data Science*. (O'Reilly Media, 2017).
 

@@ -25,17 +25,14 @@ This book introduces you to R, RStudio, and the tidyverse, a collection of R pac
 Where: Zoom link
 
 ## Schedule
-
-| date | chapter | presenter |
-| ---- | ------- | --------- |
-| 2020-08-13 | Introduction | Daniela |
-| 2020-08-27 | Data visualisation | Marcel |
-| 2020-09-10 |  |  |
-| 2020-09-24 |  |  |
-| 2020-10-01 |  |  |
-| 2020-10-15 |  |  |
-| 2020-10-29 |  |  |
-| 2020-11-05 |  |  |
-| 2020-11-19 |  |  |
-| 2020-12-03 |  |  |
-| 2020-12-17 |  |  |
+| Date       | Chapter            | Presenter |
+|------------|--------------------|-----------|
+| 2020-08-20 | Introduction       | Daniela   |
+| 2020-09-03 | Data Visualization | Marcel    |
+| 2020-09-17 |                    |           |
+| 2020-10-01 |                    |           |
+| 2020-10-15 |                    |           |
+| 2020-10-29 |                    |           |
+| 2020-11-12 |                    |           |
+| 2020-11-26 |                    |           |
+| 2020-12-10 |                    |           |

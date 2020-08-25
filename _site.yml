@@ -1,0 +1,8 @@
+name: "R for Data Science"
+navbar:
+  title: "R for Data Science"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Week 1"
+      href: presentations/week1/introduction.html

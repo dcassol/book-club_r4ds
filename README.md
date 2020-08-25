@@ -16,9 +16,7 @@ This book introduces you to R, RStudio, and the tidyverse, a collection of R pac
 
 3. Sign up for a GitHub account (also free) and clone this repository. Don't know what that means? Follow this [tutorial](https://try.github.io/levels/1/challenges/1). The process in RStudio is documented [here](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN) or there is a video [here](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-part-2/).
 
-4. Join our Google Calendar to receive meeting reminders by subscribing to the calendar's email address (7u5as7f9k4f2653hjiegvg5mo8@group.calendar.google.com).
-
-5. Participate in bi-monthly meetings, the details of which are below.
+4. Participate in bi-monthly meetings, the details of which are below.
 
 ## Our Meetings
 

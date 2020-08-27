@@ -109,14 +109,14 @@ class: inverse, center, middle
 ---
 ## Prerequisites
 
-- Some knolacgement of R: [ https://rstudio-education.github.io/hopr/](https://rstudio-education.github.io/hopr/)
+- Some knowledge of R: [ https://rstudio-education.github.io/hopr/](https://rstudio-education.github.io/hopr/)
 
 .center[![](https://rstudio-education.github.io/hopr/cover.png)]
 
 ---
 ## Prerequisites
 
-- Some knolacgement of R
+- Some knowledge of R
 
 - R and RStudio
 

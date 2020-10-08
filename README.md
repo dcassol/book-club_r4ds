@@ -28,9 +28,9 @@ Where: Zoom link
 | 2020-08-27 | Introduction       | Daniela   |
 | 2020-09-10 | Wokflows: Basics, scripts, projects  | Liz          |
 | 2020-09-24 | Data Visualization | Marcel    |
-| 2020-10-08 | Data Transformation | Igor          |
-| 2020-10-22 | Exploratory Data Analysis | Izabela          |
-| 2020-11-05 |                    |           |
+| 2020-10-08 |Data Visualization | Marcel    |
+| 2020-10-22 | Data Transformation | Igor          |
+| 2020-11-05 | Exploratory Data Analysis | Izabela          |
 | 2020-11-19 |                    |           |
 | 2020-12-03 |                    |           |
 | 2020-12-17 |                    |           |

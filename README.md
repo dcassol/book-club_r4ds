@@ -30,7 +30,7 @@ Where: Zoom link
 | 2020-09-24 | Data Visualization | Marcel    |
 | 2020-10-08 |Data Visualization | Marcel    |
 | 2020-10-22 | Data Transformation | Igor          |
-| 2020-11-05 | Exploratory Data Analysis | Izabela          |
-| 2020-11-19 |                    |           |
+| 2020-11-05 | Data Transformation | Igor          |
+| 2020-11-19 | Exploratory Data Analysis | Izabela          |
 | 2020-12-03 |                    |           |
 | 2020-12-17 |                    |           |

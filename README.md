@@ -37,3 +37,4 @@ Where: Zoom link
 | 2021-01-06 | Data import | Lais F. |
 | 2021-01-20 | Tidy data |Franciele|
 | 2021-02-03 | Relational data |           |
+

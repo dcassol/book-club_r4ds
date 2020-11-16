@@ -29,8 +29,11 @@ Where: Zoom link
 | 2020-09-10 | Wokflows: Basics, scripts, projects  | Liz          |
 | 2020-09-24 | Data Visualization | Marcel    |
 | 2020-10-08 | Data Transformation | Igor          |
-| 2020-10-22 | Exploratory Data Analysis | Izabela          |
-| 2020-11-05 |                    |           |
-| 2020-11-19 |                    |           |
-| 2020-12-03 |                    |           |
-| 2020-12-17 |                    |           |
+| 2020-10-22 | CANCELED |           |
+| 2020-11-05 | CANCELED |           |
+| 2020-11-18 | Data Transformation | Igor          |
+| 2020-11-25 | Exploratory Data Analysis | Izabela          |
+| 2020-12-09 | Tibbles | Lais M. |
+| 2021-01-06 | Data import | Lais F. |
+| 2021-01-20 | Tidy data |Franciele|
+| 2021-02-03 | Relational data |           |

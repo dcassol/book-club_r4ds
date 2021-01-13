@@ -34,7 +34,7 @@ Where: Zoom link
 | 2020-11-18 | Data Transformation | Igor          |
 | 2020-12-02 | CANCELED |           |
 | 2020-12-16 | Data Transformation | Igor          |
-| 2021-01-13 | Exploratory Data Analysis | Izabela          |
+| 2021-01-20 | Exploratory Data Analysis | Izabela          |
 | 2021-02-03 | Tibbles                   | Lais M.   |
 | 2021-02-24 | Data import               | Lais F.   |
 | 2021-03-17 | Tidy data                 | Franciele |

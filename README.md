@@ -35,16 +35,17 @@ Where: Zoom link
 | 2020-12-02 | CANCELED |           |
 | 2020-12-16 | Data Transformation | Igor          |
 | 2021-01-20 | Exploratory Data Analysis | Izabela          |
-| 2021-01-28 | Exploratory Data Analysis | Izabela          |
-| 2021-02-10 | Tibbles                   | Lais M.   |
-| 2021-02-24 | Data import               | Lais F.   |
-| 2021-03-10 | Tidy data                 | Franciele |
-| 2021-03-24 | Tidy data                 | Franciele |
-| 2021-04-07 |                           |           |
-| 2021-04-21 |                           |           |
-| 2021-05-05 |                           |           |
-| 2021-05-19 |                           |           |
-| 2021-06-02 |                           |           |
-| 2021-06-16 |                           |           |
-| 2021-06-30 |                           |           |
+| 2021-01-28 | Exploratory Data Analysis | Daniela          |
+| 2021-02-12 | Exploratory Data Analysis | Izabela          |
+| 2021-02-26 | Tibbles                   | Lais M.   |
+| 2021-02- | Data import               | Lais F.   |
+| 2021-03- | Tidy data                 | Franciele |
+| 2021-03- | Tidy data                 | Franciele |
+| 2021-04- |                           |           |
+| 2021-04- |                           |           |
+| 2021-05- |                           |           |
+| 2021-05- |                           |           |
+| 2021-06- |                           |           |
+| 2021-06- |                           |           |
+| 2021-06- |                           |           |
 

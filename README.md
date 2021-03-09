@@ -23,25 +23,25 @@ This book introduces you to R, RStudio, and the tidyverse, a collection of R pac
 Where: Zoom link
 
 ## Schedule
-| Date       | Chapter            | Presenter |
-|------------|--------------------|-----------|
-| 2020-08-27 | Introduction       | Daniela   |
+| Date       | Chapter                   | Presenter |
+|------------|---------------------------|-----------|
+| 2020-08-27 | Introduction              | Daniela   |
 | 2020-09-10 | Wokflows: Basics, scripts, projects  | Liz          |
-| 2020-09-24 | Data Visualization | Marcel    |
-| 2020-10-08 | Data Transformation | Igor          |
-| 2020-10-22 | CANCELED |           |
-| 2020-11-05 | CANCELED |           |
-| 2020-11-18 | Data Transformation | Igor          |
-| 2020-12-02 | CANCELED |           |
-| 2020-12-16 | Data Transformation | Igor          |
-| 2021-01-20 | Exploratory Data Analysis | Izabela          |
-| 2021-01-28 | Exploratory Data Analysis | Daniela          |
-| 2021-02-12 | Exploratory Data Analysis | Izabela          |
+| 2020-09-24 | Data Visualization        | Marcel    |
+| 2020-10-08 | Data Transformation       | Igor      |
+| 2020-10-22 | CANCELED                  |           |
+| 2020-11-05 | CANCELED                  |           |
+| 2020-11-18 | Data Transformation       | Igor      |
+| 2020-12-02 | CANCELED                  |           |
+| 2020-12-16 | Data Transformation       | Igor      |
+| 2021-01-20 | Exploratory Data Analysis | Izabela   |
+| 2021-01-28 | Exploratory Data Analysis | Daniela   |
+| 2021-02-12 | Exploratory Data Analysis | Izabela   |
 | 2021-02-26 | Tibbles                   | Lais M.   |
-| 2021-03-23 | Data import               | Franciele   |
-| 2021-04-06 | Tidy data                 | Loren |
-| 2021-04-20 | Relational data           | ? |
-| 2021-05-04 | Strings                   |           |
+| 2021-03-23 | Data import               | Franciele |
+| 2021-04-06 | Tidy data                 | Loren     |
+| 2021-04-20 | Relational data           | ?         |
+| 2021-05-04 | Strings                   | Gladis    |
 | 2021-05-18 |    Factors                |           |
 | 2021-06-01 |  Dataes and Times         |           |
 | 2021-06-15 |                           |           |

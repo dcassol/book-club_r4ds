@@ -39,13 +39,12 @@ Where: Zoom link
 | 2021-02-12 | Exploratory Data Analysis | Izabela   |
 | 2021-02-26 | Tibbles                   | Lais M.   |
 | 2021-03-23 | Data import               | Franciele |
-| 2021-04-06 | Tidy data                 | Loren     |
-| 2021-04-20 | Relational data           | ?         |
-| 2021-05-04 | Strings                   | Gladis    |
-| 2021-05-18 |    Factors                |           |
-| 2021-06-01 |  Dataes and Times         |           |
-| 2021-06-15 |                           |           |
+| 2021-04-06 | Data import               | Franciele |
+| 2021-04-20 | Tidy data                 | Loren     |
+| 2021-05-04 | Relational data           | ?         |
+| 2021-05-18 | Strings                   | Gladis    |
+| 2021-06-01 | Factors                   |           |
+| 2021-06-15 | Dates and Times           |           |
 | 2021-06-29 |                           |           |
 | 2021-07-13 |                           |           |
 | 2021-07-27 |                           |           |
-

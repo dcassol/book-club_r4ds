@@ -23,28 +23,39 @@ This book introduces you to R, RStudio, and the tidyverse, a collection of R pac
 Where: Zoom link
 
 ## Schedule
-| Date       | Chapter                   | Presenter |
-|------------|---------------------------|-----------|
-| 2020-08-27 | Introduction              | Daniela   |
-| 2020-09-10 | Wokflows: Basics, scripts, projects  | Liz          |
-| 2020-09-24 | Data Visualization        | Marcel    |
-| 2020-10-08 | Data Transformation       | Igor      |
-| 2020-10-22 | CANCELED                  |           |
-| 2020-11-05 | CANCELED                  |           |
-| 2020-11-18 | Data Transformation       | Igor      |
-| 2020-12-02 | CANCELED                  |           |
-| 2020-12-16 | Data Transformation       | Igor      |
-| 2021-01-20 | Exploratory Data Analysis | Izabela   |
-| 2021-01-28 | Exploratory Data Analysis | Daniela   |
-| 2021-02-12 | Exploratory Data Analysis | Izabela   |
-| 2021-02-26 | Tibbles                   | Lais M.   |
-| 2021-03-23 | Data import               | Franciele |
-| 2021-04-06 | Data import               | Franciele |
-| 2021-04-20 | Tidy data                 | Loren     |
-| 2021-05-04 | Relational data           | Izabela   |
-| 2021-05-18 | Strings                   | Gladis    |
-| 2021-06-01 | Factors                   |           |
-| 2021-06-15 | Dates and Times           |           |
-| 2021-06-29 |                           |           |
-| 2021-07-13 |                           |           |
-| 2021-07-27 |                           |           |
+
+|    Date    |               Chapter               | Presenter | Week    |
+|:----------:|:-----------------------------------:|:---------:|---------|
+| 2020-08-27 | Introduction                        | Daniela   | Week_1  |
+| 2020-09-10 | Wokflows: Basics, scripts, projects | Liz       | Week_2  |
+| 2020-09-24 | Data Visualization                  | Marcel    | Week_3  |
+| 2020-10-08 | Data Transformation                 | Igor      | Week_4  |
+| 2020-10-22 | CANCELED                            |           |         |
+| 2020-11-05 | CANCELED                            |           |         |
+| 2020-11-18 | Data Transformation                 | Igor      |         |
+| 2020-12-02 | CANCELED                            |           |         |
+| 2020-12-16 | Data Transformation                 | Igor      |         |
+| 2021-01-13 | Exploratory Data Analysis           | Izabela   | Week_5  |
+| 2021-01-20 | Exploratory Data Analysis           | Izabela   |         |
+| 2021-01-28 | Exploratory Data Analysis           | Daniela   |         |
+| 2021-02-12 | Exploratory Data Analysis           | Izabela   |         |
+| 2021-02-26 | Tibbles                             | Lais M.   | Week_6  |
+| 2021-03-23 | Data import                         | Franciele | Week_7  |
+| 2021-04-06 | Data import                         | Franciele |         |
+| 2021-04-20 | Tidy data                           | Loren     | Week_8  |
+| 2021-05-04 | Relational data                     | Izabela   | Week_9  |
+| 2021-05-18 | Strings                             | Gladis    | Week_10 |
+| 2021-06-01 | Factors                             |           | Week_11 |
+| 2021-06-15 | Dates and times                     |           | Week_12 |
+| 2021-06-29 | Pipes                               |           | Week_13 |
+| 2021-07-13 | Functions                           |           | Week_14 |
+| 2021-07-27 | Vectors                             |           | Week_15 |
+| 2021-08-10 | Iteration                           |           | Week_16 |
+| 2021-08-24 | Model basics                        |           | Week_17 |
+| 2021-09-07 | Model building                      |           | Week_18 |
+| 2021-09-21 | Many models                         |           | Week_19 |
+| 2021-10-05 | R Markdown                          |           | Week_20 |
+| 2021-10-19 | Graphics for communication          |           | Week_21 |
+| 2021-11-02 | R Markdown formats                  |           | Week_22 |
+| 2021-11-16 | R Markdown workflow                 |           | Week_23 |
+| 2021-11-30 | Conclusion                          |           | Week_24 |

@@ -1,0 +1,542 @@
+---
+title: "Dados Organizados"
+author: "Loren Chisté"
+date: "31/03/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+# Dados Organizados
+## Introdução
+
+
+“Conjuntos de dados organizados são todos iguais, mas cada conjunto de dados bagunçado é bagunçado à sua maneira.” –– Hadley Wickham
+
+Hoje aprenderemos a organizar os dados em R. Dados organizados e as ferramentas organizadas fornecidas pelos pacotes no tidyverse, você gastará muito menos tempo transferindo os dados de uma representação para outra, permitindo que dedique mais tempo às questões analíticas em questão.
+
+## Pré-requisitos
+tidyr é um membro do núcleo tidyverse.
+
+```{r}
+library(tidyverse)
+```
+
+# Dados organizados
+Você pode representar os mesmos dados de várias maneiras. 
+O exemplo abaixo mostra dados organizados de quatro maneiras diferentes. 
+Cada conjunto de dados mostra os mesmos valores de quatro variáveis , país , ano , população e casos , mas cada conjunto de dados organiza os valores de uma maneira diferente.
+
+
+```{r}
+table1
+```
+
+#> # A tibble: 6 x 4
+#>   country      year  cases population
+#>   <chr>       <int>  <int>      <int>
+#> 1 Afghanistan  1999    745   19987071
+#> 2 Afghanistan  2000   2666   20595360
+#> 3 Brazil       1999  37737  172006362
+#> 4 Brazil       2000  80488  174504898
+#> 5 China        1999 212258 1272915272
+#> 6 China        2000 213766 1280428583
+
+```{r}
+table2
+```
+
+#> # A tibble: 12 x 4
+#>   country      year type           count
+#>   <chr>       <int> <chr>          <int>
+#> 1 Afghanistan  1999 cases            745
+#> 2 Afghanistan  1999 population  19987071
+#> 3 Afghanistan  2000 cases           2666
+#> 4 Afghanistan  2000 population  20595360
+#> 5 Brazil       1999 cases          37737
+#> 6 Brazil       1999 population 172006362
+#> # … with 6 more rows
+
+
+```{r}
+table3
+```
+
+#> # A tibble: 6 x 3
+#>   country      year rate             
+#> * <chr>       <int> <chr>            
+#> 1 Afghanistan  1999 745/19987071     
+#> 2 Afghanistan  2000 2666/20595360    
+#> 3 Brazil       1999 37737/172006362  
+#> 4 Brazil       2000 80488/174504898  
+#> 5 China        1999 212258/1272915272
+#> 6 China        2000 213766/1280428583
+
+# Spread across two tibbles
+
+```{r}
+table4a 
+```
+
+# cases
+#> # A tibble: 3 x 3
+#>   country     `1999` `2000`
+#> * <chr>        <int>  <int>
+#> 1 Afghanistan    745   2666
+#> 2 Brazil       37737  80488
+#> 3 China       212258 213766
+
+```{r}
+table4b
+```
+
+# population
+#> # A tibble: 3 x 3
+#>   country         `1999`     `2000`
+#> * <chr>            <int>      <int>
+#> 1 Afghanistan   19987071   20595360
+#> 2 Brazil       172006362  174504898
+#> 3 China       1272915272 1280428583
+
+Todas são representações dos mesmos dados, porém não são fáceis de usar. O conjunto de dados tidy, será muito mais fácil de trabalhar dentro do tidyverse.
+
+São três regras: 
+Cada variável deve ter sua própria coluna.
+Cada observação deve ter sua própria linha.
+Cada valor deve ter sua própria célula.
+
+![A Figura 12.1 mostra as regras visualmente. Seguir três regras torna um conjunto de dados organizado: as variáveis estão nas colunas, as observações estão nas linhas e os valores estão nas células.](figura 12.1.png)
+
+dplyr, ggplot2 e todos os outros pacotes no tidyverse são projetados para trabalhar com dados organizados. Aqui estão alguns pequenos exemplos que mostram como você pode trabalhar com table1.
+
+# Compute rate per 10,000
+```{r}
+table1 %>% 
+  mutate(rate = cases / population * 10000)
+```
+
+#> # A tibble: 6 x 5
+#>   country      year  cases population  rate
+#>   <chr>       <int>  <int>      <int> <dbl>
+#> 1 Afghanistan  1999    745   19987071 0.373
+#> 2 Afghanistan  2000   2666   20595360 1.29 
+#> 3 Brazil       1999  37737  172006362 2.19 
+#> 4 Brazil       2000  80488  174504898 4.61 
+#> 5 China        1999 212258 1272915272 1.67 
+#> 6 China        2000 213766 1280428583 1.67
+
+# Compute cases per year
+```{r}
+table1 %>% 
+  count(year, wt = cases)
+```
+
+#> # A tibble: 2 x 2
+#>    year      n
+#>   <int>  <int>
+#> 1  1999 250740
+#> 2  2000 296920
+
+# Visualise changes over time
+```{r}
+library(ggplot2)
+ggplot(table1, aes(year, cases)) + 
+  geom_line(aes(group = country), colour = "grey50") + 
+  geom_point(aes(colour = country))
+```
+
+
+
+
+
+
+# Pivotagem
+Os princípios de dados organizados parecem tão óbvios que você pode se perguntar se algum dia encontrará um conjunto de dados que não o seja. Infelizmente, porém, a maioria dos dados que você encontrará estarão desordenados. Há duas razões principais:
+
+1- A maioria das pessoas não estão familiarizados com os princípios de dados organizados;
+2- Os dados costumam ser organizados para facilitar algum uso além da análise;
+
+Isso significa que, para a maioria das análises reais, você precisará fazer alguns ajustes. 
+1- sempre descobrir quais são as variáveis e observações. 
+2- resolver um dos dois problemas comuns:
+
+Uma variável pode ser espalhada por várias colunas.
+
+Uma observação pode estar espalhada por várias linhas.
+
+Para corrigir esses problemas, você precisará das duas funções mais importantes do tidyr: pivot_longer() e pivot_wider().
+
+```{r}
+table4a
+```
+
+table4a
+#> # A tibble: 3 x 3
+#>   country     `1999` `2000`
+#> * <chr>        <int>  <int>
+#> 1 Afghanistan    745   2666
+#> 2 Brazil       37737  80488
+#> 3 China       212258 213766
+
+Para organizar: girar as colunas ofender em um novo par de variáveis.
+1- O conjunto de colunas cujos nomes são valores, não variáveis. Neste exemplo, essas são as colunas 1999 e 2000 => Year.
+2- O nome da variável para a qual mover os valores da coluna => Cases.
+
+Juntos, esses parâmetros geram a chamada para pivot_longer():
+
+```{r}
+table4a %>% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+```
+
+#> # A tibble: 6 x 3
+#>   country     year   cases
+#>   <chr>       <chr>  <int>
+#> 1 Afghanistan 1999     745
+#> 2 Afghanistan 2000    2666
+#> 3 Brazil      1999   37737
+#> 4 Brazil      2000   80488
+#> 5 China       1999  212258
+#> 6 China       2000  213766
+
+Observe que “1999” e “2000” são nomes não sintáticos (porque eles não começam com uma letra), então temos que colocá-los entre crases.
+year e cases não existem, table4a então colocamos seus nomes entre aspas.
+
+![Figura](Screenshot_1.png) 
+
+pivot_longer()torna os conjuntos de dados mais longos, aumentando o número de linhas e diminuindo o número de colunas. 
+
+Podemos usar pivot_longer()para arrumar de table4b maneira semelhante. A única diferença é a variável armazenada nos valores da célula:
+
+```{r}
+table4b %>% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "population")
+```
+
+#> # A tibble: 6 x 3
+#>   country     year  population
+#>   <chr>       <chr>      <int>
+#> 1 Afghanistan 1999    19987071
+#> 2 Afghanistan 2000    20595360
+#> 3 Brazil      1999   172006362
+#> 4 Brazil      2000   174504898
+#> 5 China       1999  1272915272
+#> 6 China       2000  1280428583
+Para combinar as versões organizadas de table4a e table4b em uma única tabela, precisamos usar dplyr::left_join(), que você aprenderá em dados relacionais .
+
+```{r}
+tidy4a <- table4a %>% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+tidy4b <- table4b %>% 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "population")
+left_join(tidy4a, tidy4b)
+```
+
+#> Joining, by = c("country", "year")
+#> # A tibble: 6 x 4
+#>   country     year   cases population
+#>   <chr>       <chr>  <int>      <int>
+#> 1 Afghanistan 1999     745   19987071
+#> 2 Afghanistan 2000    2666   20595360
+#> 3 Brazil      1999   37737  172006362
+#> 4 Brazil      2000   80488  174504898
+#> 5 China       1999  212258 1272915272
+#> 6 China       2000  213766 1280428583
+
+
+## Mais amplo
+
+pivot_wider()é o oposto de pivot_longer(). Você o usa quando uma observação está espalhada por várias linhas. Por exemplo, tome table2: uma observação é um país em um ano, mas cada observação está espalhada por duas linhas.
+
+```{r}
+table2
+```
+
+#> # A tibble: 12 x 4
+#>   country      year type           count
+#>   <chr>       <int> <chr>          <int>
+#> 1 Afghanistan  1999 cases            745
+#> 2 Afghanistan  1999 population  19987071
+#> 3 Afghanistan  2000 cases           2666
+#> 4 Afghanistan  2000 population  20595360
+#> 5 Brazil       1999 cases          37737
+#> 6 Brazil       1999 population 172006362
+#> # … with 6 more rows
+
+Para arrumar isso, primeiro analisamos a representação de maneira semelhante a pivot_longer(). Desta vez, no entanto, precisamos apenas de dois parâmetros:
+
+1- A coluna da qual obter os nomes das variáveis => type.
+2- A coluna da qual obter valores => Count.
+
+Depois de descobrir isso, podemos usar pivot_wider(), conforme mostrado de forma programática a seguir, e visualmente na Figura.
+
+```{r}
+table2 %>%
+    pivot_wider(names_from = type, values_from = count)
+```
+
+#> # A tibble: 6 x 4
+#>   country      year  cases population
+#>   <chr>       <int>  <int>      <int>
+#> 1 Afghanistan  1999    745   19987071
+#> 2 Afghanistan  2000   2666   20595360
+#> 3 Brazil       1999  37737  172006362
+#> 4 Brazil       2000  80488  174504898
+#> 5 China        1999 212258 1272915272
+#> 6 China        2000 213766 1280428583
+Dinamizando `table2` em uma forma" mais ampla "e organizada.
+
+![Figura](3.png)
+
+
+Como você deve ter adivinhado por seus nomes, pivot_wider()e pivot_longer()são complementos. pivot_longer()torna as mesas largas mais estreitas e mais longas; pivot_wider()torna as mesas longas mais curtas e largas.
+
+
+
+
+## Separando e Unindo
+Na table3 temos um problema diferente: temos uma coluna (rate) que contém duas variáveis ( casese population). 
+Para corrigir esse problema, precisaremos da separate()função. Você também vai aprender sobre o complemento de separate(): unite(), o que você usa, se uma única variável está distribuída em várias colunas.
+
+
+
+# Separado
+separate()separa uma coluna em várias colunas.
+
+table3
+#> # A tibble: 6 x 3
+#>   country      year rate             
+#> * <chr>       <int> <chr>            
+#> 1 Afghanistan  1999 745/19987071     
+#> 2 Afghanistan  2000 2666/20595360    
+#> 3 Brazil       1999 37737/172006362  
+#> 4 Brazil       2000 80488/174504898  
+#> 5 China        1999 212258/1272915272
+#> 6 China        2000 213766/1280428583
+A rate coluna contém as variáveis casese population, e precisamos dividi-la em duas variáveis. separate()pega o nome da coluna a ser separada e os nomes das colunas nas quais ela se separa.
+
+```{r}
+table3 %>% 
+  separate(rate, into = c("cases", "population"))
+```
+
+#> # A tibble: 6 x 4
+#>   country      year cases  population
+#>   <chr>       <int> <chr>  <chr>     
+#> 1 Afghanistan  1999 745    19987071  
+#> 2 Afghanistan  2000 2666   20595360  
+#> 3 Brazil       1999 37737  172006362 
+#> 4 Brazil       2000 80488  174504898 
+#> 5 China        1999 212258 1272915272
+#> 6 China        2000 213766 1280428583
+
+![Figura](agr.png)
+    
+
+
+Por padrão, separate()irá dividir os valores sempre que vir um caractere não alfanumérico (ou seja, um caractere que não é um número ou letra). Por exemplo, no código acima, separate()divida os valores de ratenos caracteres de barra. Se você deseja usar um caractere específico para separar uma coluna, você pode passar o caractere para o separgumento de separate(). 
+
+```{r}
+table3 %>% 
+  separate(rate, into = c("cases", "population"), sep = "/")
+```
+
+
+Observe cuidadosamente os tipos de coluna: você notará que cases e populationsão colunas de caracteres. Este é o comportamento padrão em separate(): deixa o tipo da coluna como está. Aqui, no entanto, não é muito útil, pois esses são realmente números. Podemos pedir separate()para tentar converter para tipos melhores usando convert = TRUE:
+
+```{r}
+table3 %>% 
+  separate(rate, into = c("cases", "population"), convert = TRUE)
+```
+
+#> # A tibble: 6 x 4
+#>   country      year  cases population
+#>   <chr>       <int>  <int>      <int>
+#> 1 Afghanistan  1999    745   19987071
+#> 2 Afghanistan  2000   2666   20595360
+#> 3 Brazil       1999  37737  172006362
+#> 4 Brazil       2000  80488  174504898
+#> 5 China        1999 212258 1272915272
+#> 6 China        2000 213766 1280428583
+
+Você também pode passar um vetor de inteiros para sep. separate()irá interpretar os inteiros como posições nas quais dividir. Os valores positivos começam em 1 na extrema esquerda das strings; o valor negativo começa em -1 na extrema direita das strings. Ao usar inteiros para separar strings, o comprimento de sepdeve ser um a menos que o número de nomes em into.
+
+Você pode usar esse arranjo para separar os dois últimos dígitos de cada ano. Isso torna esses dados menos organizados, mas é útil em outros casos, como você verá em breve.
+
+```{r}
+table3 %>% 
+  separate(year, into = c("century", "year"), sep = 2)
+```
+
+#> # A tibble: 6 x 4
+#>   country     century year  rate             
+#>   <chr>       <chr>   <chr> <chr>            
+#> 1 Afghanistan 19      99    745/19987071     
+#> 2 Afghanistan 20      00    2666/20595360    
+#> 3 Brazil      19      99    37737/172006362  
+#> 4 Brazil      20      00    80488/174504898  
+#> 5 China       19      99    212258/1272915272
+#> 6 China       20      00    213766/1280428583
+
+
+
+
+
+
+# Unir
+
+unite()é o inverso de separate(): ele combina várias colunas em uma única coluna. 
+![Figura](Screenshot_2.png)
+
+Podemos usar unite()para reunir as colunas de século e ano. Esses dados são salvos como tidyr::table5. unite()recebe um quadro de dados, o nome da nova variável a ser criada e um conjunto de colunas a serem combinadas, novamente especificado no dplyr::select()estilo:
+
+```{r}
+table5 %>% 
+  unite(new, century, year)
+```
+
+#> # A tibble: 6 x 3
+#>   country     new   rate             
+#>   <chr>       <chr> <chr>            
+#> 1 Afghanistan 19_99 745/19987071     
+#> 2 Afghanistan 20_00 2666/20595360    
+#> 3 Brazil      19_99 37737/172006362  
+#> 4 Brazil      20_00 80488/174504898  
+#> 5 China       19_99 212258/1272915272
+#> 6 China       20_00 213766/1280428583
+
+O padrão colocará um sublinhado ( _) entre os valores de diferentes colunas. Aqui, não queremos nenhum separador, então usamos "":
+
+```{r}
+table5 %>% 
+  unite(new, century, year, sep = "")
+```
+
+#> # A tibble: 6 x 3
+#>   country     new   rate             
+#>   <chr>       <chr> <chr>            
+#> 1 Afghanistan 1999  745/19987071     
+#> 2 Afghanistan 2000  2666/20595360    
+#> 3 Brazil      1999  37737/172006362  
+#> 4 Brazil      2000  80488/174504898  
+#> 5 China       1999  212258/1272915272
+#> 6 China       2000  213766/1280428583
+
+
+
+
+
+## Valores Ausentes
+
+Alterar a representação de um conjunto de dados traz à tona uma importante sutileza de valores ausentes. Surpreendentemente, um valor pode estar faltando em uma das duas maneiras possíveis:
+
+1- Explicitamente , ou seja, sinalizado com NA.
+2- Implicitamente , ou seja, simplesmente não está presente nos dados.
+
+
+```{r}
+stocks <- tibble(
+  year   = c(2015, 2015, 2015, 2015, 2016, 2016, 2016),
+  qtr    = c(   1,    2,    3,    4,    2,    3,    4),
+  return = c(1.88, 0.59, 0.35,   NA, 0.92, 0.17, 2.66)
+)
+```
+
+Existem dois valores ausentes neste conjunto de dados:
+
+1- O retorno para o quarto trimestre de 2015 está explicitamente ausente, porque a célula onde seu valor deveria estar contém NA.
+2- O retorno para o primeiro trimestre de 2016 está implicitamente ausente, porque simplesmente não aparece no conjunto de dados.
+
+
+A maneira como um conjunto de dados é representado pode tornar explícitos os valores implícitos. Por exemplo, podemos tornar explícito o valor ausente implícito colocando anos nas colunas:
+
+```{r}
+stocks %>% 
+  pivot_wider(names_from = year, values_from = return)
+```
+
+#> # A tibble: 4 x 3
+#>     qtr `2015` `2016`
+#>   <dbl>  <dbl>  <dbl>
+#> 1     1   1.88  NA   
+#> 2     2   0.59   0.92
+#> 3     3   0.35   0.17
+#> 4     4  NA      2.66
+
+Porque estes valores em falta explícitas podem não ser importantes em outras representações de dados, você pode definir values_drop_na = TRUEem pivot_longer()transformar os valores em falta implícito explícito:
+
+```{r}
+stocks %>% 
+  pivot_wider(names_from = year, values_from = return) %>% 
+  pivot_longer(
+    cols = c(`2015`, `2016`), 
+    names_to = "year", 
+    values_to = "return", 
+    values_drop_na = TRUE
+  )
+```
+
+#> # A tibble: 6 x 3
+#>     qtr year  return
+#>   <dbl> <chr>  <dbl>
+#> 1     1 2015    1.88
+#> 2     2 2015    0.59
+#> 3     2 2016    0.92
+#> 4     3 2015    0.35
+#> 5     3 2016    0.17
+#> 6     4 2016    2.66
+
+Outra ferramenta importante para tornar explícitos os valores ausentes em dados organizados é complete():
+
+```{r}
+stocks %>% 
+  complete(year, qtr)
+```
+
+#> # A tibble: 8 x 3
+#>    year   qtr return
+#>   <dbl> <dbl>  <dbl>
+#> 1  2015     1   1.88
+#> 2  2015     2   0.59
+#> 3  2015     3   0.35
+#> 4  2015     4  NA   
+#> 5  2016     1  NA   
+#> 6  2016     2   0.92
+#> # … with 2 more rows
+
+complete()pega um conjunto de colunas e encontra todas as combinações exclusivas. Em seguida, garante que o conjunto de dados original contém todos esses valores, preenchendo NAs explícitos quando necessário.
+
+Existe uma outra ferramenta importante que você deve saber para trabalhar com valores ausentes. Às vezes, quando uma fonte de dados foi usada principalmente para entrada de dados, os valores ausentes indicam que o valor anterior deve ser transportado:
+
+```{r}
+treatment <- tribble(
+  ~ person,           ~ treatment, ~response,
+  "Derrick Whitmore", 1,           7,
+  NA,                 2,           10,
+  NA,                 3,           9,
+  "Katherine Burke",  1,           4
+)
+```
+
+Você pode preencher esses valores ausentes com fill(). É necessário um conjunto de colunas onde você deseja que os valores ausentes sejam substituídos pelo valor não ausente mais recente (às vezes chamado de última observação transportada).
+
+```{r}
+treatment %>% 
+  fill(person)
+```
+
+#> # A tibble: 4 x 3
+#>   person           treatment response
+#>   <chr>                <dbl>    <dbl>
+#> 1 Derrick Whitmore         1        7
+#> 2 Derrick Whitmore         2       10
+#> 3 Derrick Whitmore         3        9
+#> 4 Katherine Burke          1        4

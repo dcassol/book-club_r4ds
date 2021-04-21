@@ -1,0 +1,607 @@
+---
+title: "R for Data Science"
+subtitle: "11. Data import"
+author: Franciele Pereira Rossini 
+date: "`r format(Sys.time(), '%d de %B de %Y')`"
+output:
+  xaringan::moon_reader:
+    css: ["metropolis", "rladies-fonts"  ]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true 
+      countIncrementalSlides: false
+    
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = TRUE,
+  warning = TRUE,
+  dev = "png")
+library(tidyverse)
+```
+
+# O que vimos na apresentação anterior?
+
+Carregar arquivos simples em R com o pacote **readr**.
+
+ - **read_csv()** = lê arquivos delimitados por vírgula.
+
+ - **read_csv2()**  lê arquivos separados por ponto e vírgula.
+ 
+---
+# O que vimos na apresentação anterior?
+
+ - O **read_csv()** traz uma análise coluna por coluna.  
+
+```{r}
+
+mtcars<- read_csv (readr_example ("mtcars.csv" ))
+
+```
+---
+
+# O que vimos na apresentação anterior?
+
+- O **read_csv()** fornecer um arquivo **.csv** embutido.
+
+```{r}
+read_csv("a,b,c
+1,2,3
+4,5,6")
+```
+
+---
+
+# O que vimos na apresentação anterior?
+
+- O argumento  **skip = n** para pular **n** número de linha 
+
+```{r}
+
+read_csv("The first line of metadata
+  The second line of metadata
+  x,y,z
+  1,2,3", skip = 2)
+
+```
+
+---
+# O que vimos na apresentação anterior?
+
+- O argumento  **comment = "#"** que descartar todas as linhas que começam com, por exemplo,  #
+
+
+```{r}
+read_csv("# A comment I want to skip
+  x,y,z
+  1,2,3", comment = "#")
+```
+
+---
+
+# O que vimos na apresentação anterior?
+
+- O argumento **col_names = FALSE** para informar para read_csv() não tratar a primeira linha como títulos
+
+```{r}
+read_csv("1,2,3\n4,5,6", col_names = FALSE)
+```
+
+( "\n"é um atalho para adicionar uma nova linha na tabela).
+
+---
+
+# O que vimos na apresentação anterior?
+
+- O argumento **col_names + vetor de caracteres** para colocar o nome da coluna.
+
+```{r}
+read_csv("1,2,3\n4,5,6", col_names = c("x", "y", "z"))
+```
+---
+# O que vimos na apresentação anterior?
+
+- O argumento **na** para representar os valores ausentes em seu arquivo.
+
+```{r}
+read_csv("a,b,c\n1,2,.", na = ".")
+```
+
+---
+# O que vimos na apresentação anterior?
+
+- As funções **str** (informar de forma compacta a estrutura de um objeto R) e **parse_* ** (transforma um vetor em um vetor mais especializado).
+
+
+```{r}
+str(parse_logical(c("TRUE", "FALSE", "NA")))
+
+str(parse_integer(c("1", "2", "3")))
+
+str(parse_date(c("2010-01-01", "1979-10-14")))
+
+```
+
+---
+# O que vimos na apresentação anterior?
+
+- A função **problems()** para obter o conjunto completo da  falha
+
+```{r}
+x <- parse_integer(c("123", "345", "abc", "123.45"))
+x
+problems(x)
+```
+
+--- 
+# **Na apresentação de hoje .....**
+
+### - Análise de  vetores
+
+### - Análise de um arquivo
+
+### - A funções de gravação do readr
+
+### - Outros pacotes de importação de dados 
+
+---
+
+#  Análise de  vetores  
+
+## Número
+  
+  Problemas ao  analisar um número:
+  
+  - Gráfia;  
+  
+  - Os caracteres que fornecem algum contexto, como “$ 1000” ou “10%”; e
+  
+  - O caracter de agrupamentos que facilitar a leitura, ex.: 100.000.000
+
+
+---
+
+#  Análise de  vetores 
+
+
+ - Noção de localidade 
+ 
+
+
+```{r}
+parse_number("1.23")
+parse_number("1,234,567.78")
+
+parse_number("1.234.567,78", locale = locale(decimal_mark = ","))
+
+```
+---
+
+#  Análise de  vetores 
+
+
+- **parse_number()**
+
+```{r}
+
+parse_number("$100")
+
+parse_number("20%")
+
+parse_number("It cost $123.45")
+
+```
+
+---
+
+#  Análise de  vetores
+
+
+- O problema final é abordado pela combinação de **parse_number()** e a **locale(grouping_mark = ".")**
+
+```{r}
+# Used in America
+parse_number("$123,456,789")
+
+
+# Used in many parts of Europe
+parse_number("123.456.789", locale = locale(grouping_mark = "."))
+
+
+# Used in Switzerland
+parse_number("123'456'789", locale = locale(grouping_mark = "'"))
+
+
+```
+
+---
+
+#  Análise de vetores
+
+## Strings
+
+- O **charToRaw** converte uma string em bytes brutos, sem levar em consideração nenhuma codificação declarada. 
+
+```{r}
+
+charToRaw("oi")
+
+
+```
+
+---
+
+#  Análise de  vetores
+
+- O **Latin1** (também conhecido como ISO-8859-1, usado para idiomas da Europa Ocidental),  **Latin2** (também conhecido como ISO-8859-2, usado para idiomas do Leste Europeu) e  **UTF-8** são padrões para a codificação de caracteres de um strings
+
+- A conbinação **parse_character** com  **locale(encoding = "*")**
+
+```{r}
+x1 <- "El Ni\xf1o was particularly bad this year"
+parse_character(x1, locale = locale(encoding = "Latin1"))
+
+
+x2 <- "\x82\xb1\x82\xf1\x82\xc9\x82\xbf\x82\xcd"
+
+parse_character(x2, locale = locale(encoding ="Shift-JIS"))
+
+```
+---
+
+#  Análise de  vetores 
+
+
+ - A função **guess_encoding()** ajuda para descobrir qual 
+ padrão de condificação usar.
+ 
+```{r}
+guess_encoding(charToRaw(x1))
+
+guess_encoding(charToRaw(x2))
+
+```
+
+---
+
+#  Análise de  vetores
+
+## Fator 
+
+- A combinação **parse_factor()** com **levels**  gerar um aviso sempre que um valor inesperado estiver presente.
+
+```{r}
+fruit <- c("apple", "banana")
+
+parse_factor(c("apple", "banana", "bananana"), levels = fruit)
+```
+
+
+---
+
+#  Análise de  vetores
+
+## Datas e hora
+
+```{r}
+
+parse_date("2010-10-01")
+
+library(hms)
+parse_time("01:10 am")
+
+parse_time("20:10:01")
+
+```
+
+
+---
+
+#  Análise de  vetores
+
+
+### Ano
+
+- %Y (4 dígitos)
+- %y (2 dígitos)
+
+### Mês
+- %m (2 dígitos)
+- %b (nome abreviado, como “Jan”)
+- %B (nome completo, “janeiro”)
+
+### Dia
+- %d (2 dígitos)
+- %e (espaço opcional)
+
+
+---
+
+#  Análise de  vetores 
+
+
+### Tempo
+
+- %H  (horas 0-23)
+- %I  (horas 0-12, deve ser usado com %p)
+- %p  (Indicador AM / PM)
+- %M  (minutos)
+- %S  (segundos inteiros)
+- %OS (segundos reais)
+- %Z  (Fuso horário, como nome, por exemplo  America/Chicago)
+- %z  (como deslocamento do UTC, por exemplo  +0800)
+
+### Sem dígitos
+- %. (pula um caractere não-dígito)
+- %* (pula qualquer número de não dígitos)
+
+---
+#  Análise de  vetores
+
+
+
+```{r}
+parse_date("01/02/15", "%m/%d/%y")
+
+parse_date("01/02/15", "%d/%m/%y")
+
+parse_date("01/02/15", "%y/%m/%d")
+
+parse_date("1 janvier 2015", "%d %B %Y", locale = locale("fr"))
+
+## "`r format(Sys.time(), '%d de %B de %Y')`"
+```
+---
+#  Análise de  arquivos 
+
+## Estratégia 
+
+O **readr** usar uma **heurística** para descobrir o tipo de cada coluna.
+
+A heurística tenta cada uns dos seguintes tipos, parando quando encontra uma correspondência:
+
+- lógico: contém apenas “F”, “T”, “FALSE” ou “TRUE”.
+
+- inteiro: contém apenas caracteres numéricos (e -).
+
+- double: contém apenas duplas válidas
+
+- número: contém duplas válidas com a marca de agrupamento dentro.
+
+- tempo: corresponde ao padrão **time_format**.
+
+- data: corresponde ao padrão **date_format**.
+
+
+---
+
+#  Análise de  arquivos 
+
+
+- A funções **parse_guess()** (retorna o vetor do analisador) e **guess_parser()** retorna o nome do analisador. 
+
+- Ambas usam uma série de heurísticas para determinar qual tipo  é o "melhor". 
+
+```{r}
+guess_parser("2010-10-01")
+
+guess_parser("15:01")
+
+guess_parser(c("TRUE", "FALSE"))
+
+```
+
+---
+
+#  Análise de  arquivos 
+
+
+
+```{r}
+
+guess_parser(c("1", "5", "9"))
+
+guess_parser(c("12,352,561"))
+
+str(parse_guess("2010-10-10"))
+
+```
+
+---
+
+#  Análise de  arquivos 
+
+ Os  principais problemas da análise  de um arquivo são:
+ - Arquivo de dado muito grandes; e 
+ - Muitos valores ausentes
+ 
+ 
+---
+
+#  Análise de  arquivos 
+
+
+```{r}
+challenge <- read_csv(readr_example("challenge.csv"))
+```
+
+---
+
+#  Análise de  arquivos 
+
+
+
+```{r}
+problems(challenge)
+
+```
+
+
+---
+
+#  Análise de  arquivos 
+
+
+ 
+ - As funções **head()** (para ver as primeiras linhas),  **tail()** (para ver as últimas linhas)  e **str()** (para ver a estrutura dos dados)
+
+```{r}
+tail(challenge)
+```
+
+---
+
+#  Análise de  arquivos 
+
+
+
+- O argumento **col_types = cols "*" ** para atribuir um tipo a coluna
+
+```{r}
+challenge <- read_csv(
+  readr_example("challenge.csv"), 
+  col_types = cols(
+    x = col_double(),
+    y = col_logical()
+  )
+)
+```
+
+
+---
+
+#  Análise de  arquivos 
+
+ 
+
+
+```{r}
+challenge1 <- read_csv(
+  readr_example("challenge.csv"), 
+  col_types = cols(
+    x = col_double(),
+    y = col_date() ))
+tail(challenge1)
+```
+
+---
+
+#  Análise de  arquivos 
+
+## Outras estratégia 
+
+- Usar o argumentos **guess_max** para saber o tipo espresso nessa coluna:
+
+```{r}
+challenge2 <- read_csv(readr_example("challenge.csv"), guess_max = 1001)
+
+challenge2
+ 
+```
+---
+
+#  Análise de  arquivos 
+
+- Ler somente o vetor caracteres do arquivo 
+
+```{r}
+challenge2 <- read_csv(readr_example("challenge.csv"), 
+                       col_types = cols(.default= col_character()))
+challenge2
+```
+---
+
+#  Análise de  arquivos 
+
+- Ler somente o vetor caracteres do arquivo;
+
+- Usar a função **type_convert()**, que aplica a heurística de análise às colunas de caracteres em um quadro de dados.
+
+
+
+---
+#  Análise de  arquivos 
+
+
+```{r}
+challenge2 <- read_csv(readr_example("challenge.csv"), 
+                       col_types = cols(.default= col_character()))
+challenge2 <- type_convert(challenge2)
+challenge2
+```
+---
+#  Análise de  arquivos 
+
+
+
+```{r}
+tail(challenge2)
+```
+
+---
+# Gravando  um arquivo
+
+A função **write_csv()** e **write_tsv()**. Ambas as funções aumentam as chances de o arquivo de saída ser lido de volta corretamente por:
+
+- Sempre codificando strings em UTF-8.
+
+- Salvar datas e horas de data no formato ISO8601 para que sejam facilmente analisadas em outro lugar.
+
+---
+# Gravando um arquivo
+
+```{r}
+write_csv(challenge, "challenge.csv")
+```
+
+---
+  
+# Gravando um arquivo
+
+ Existem duas alternativas:
+ 
+ 1.  Usar write_rds()e read_rds()são invólucros uniformes em torno das funções básicas readRDS()e saveRDS(). Estes armazenam dados no formato binário personalizado de R, denominado RDS:
+
+
+```{r}
+oi<- type_convert(challenge2)
+write_rds(oi, "challenge.rds")
+oi2 <- read_rds("challenge.rds")
+```
+
+---
+  
+# Gravando um arquivo
+
+2.  O pacote **feather** implementa um formato de arquivo binário rápido que pode ser compartilhado entre as linguagens de programação.
+
+
+```{r}
+library(feather)
+write_feather(challenge, "challenge.feather")
+read_feather("challenge.feather")
+```
+
+---
+
+#  Outros pacotes de importação de dados 
+
+- **haven** = arquivos nos formatos SPSS, Stata, and SAS.
+
+- **readxl** e **writexl**  = arquivos no formatos excel  ( .xls and .xlsx).
+
+-  **DBI** = arquivo no formato SQL (ex:. RMySQL, RSQLite, RPostgreSQL etc) 
+
+---
+
+.center[
+![oi](https://media1.tenor.com/images/83977116ecbedb2c32e38caa617fe822/tenor.gif?itemid=14009365)
+
+**DÚVIDAS???**
+]
+
+

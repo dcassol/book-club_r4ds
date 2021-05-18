@@ -45,17 +45,18 @@ Where: Zoom link
 | 2021-04-20 | Tidy data                           | Loren     | Week_8  |
 | 2021-05-04 | Relational data                     | Izabela   | Week_9  |
 | 2021-05-18 | Strings                             | Gladis    | Week_10 |
-| 2021-06-01 | Factors                             |           | Week_11 |
-| 2021-06-15 | Dates and times                     |           | Week_12 |
-| 2021-06-29 | Pipes                               |           | Week_13 |
-| 2021-07-13 | Functions                           |           | Week_14 |
-| 2021-07-27 | Vectors                             |           | Week_15 |
-| 2021-08-10 | Iteration                           |           | Week_16 |
-| 2021-08-24 | Model basics                        |           | Week_17 |
-| 2021-09-07 | Model building                      |           | Week_18 |
-| 2021-09-21 | Many models                         |           | Week_19 |
-| 2021-10-05 | R Markdown                          |           | Week_20 |
-| 2021-10-19 | Graphics for communication          |           | Week_21 |
-| 2021-11-02 | R Markdown formats                  |           | Week_22 |
-| 2021-11-16 | R Markdown workflow                 |           | Week_23 |
-| 2021-11-30 | Conclusion                          |           | Week_24 |
+| 2021-05-25 | Strings                             | Gladis    | Week_10 |
+| 2021-06-01 | Factors                             |    Liz    | Week_11 |
+| 2021-06-15 | Dates and times                     |    Igor   | Week_12 |
+| 2021-06-29 | Pipes                               | Marcel    | Week_13 |
+| 2021-07-13 | Functions                           | Lais m.   | Week_14 |
+| 2021-07-27 | Vectors                             | Loren     | Week_15 |
+| 2021-08-10 | Iteration                           | Izabela   | Week_16 |
+| 2021-08-24 | Model basics                        |  Gladis   | Week_17 |
+| 2021-09-07 | Model building                      |  Liz      | Week_18 |
+| 2021-09-21 | Many models                         |  Igor     | Week_19 |
+| 2021-10-05 | R Markdown                          |  Marcel   | Week_20 |
+| 2021-10-19 | Graphics for communication          |  Lais M   | Week_21 |
+| 2021-11-02 | R Markdown formats                  | Loren     | Week_22 |
+| 2021-11-16 | R Markdown workflow                 |  Izabela  | Week_23 |
+| 2021-11-30 | Conclusion                          |  Gladis   | Week_24 |

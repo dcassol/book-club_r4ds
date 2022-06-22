@@ -24,39 +24,30 @@ Where: Zoom link
 
 ## Schedule
 
-|    Date    |               Chapter               | Presenter | Week    |
-|:----------:|:-----------------------------------:|:---------:|---------|
-| 2020-08-27 | Introduction                        | Daniela   | Week_1  |
-| 2020-09-10 | Wokflows: Basics, scripts, projects | Liz       | Week_2  |
-| 2020-09-24 | Data Visualization                  | Marcel    | Week_3  |
-| 2020-10-08 | Data Transformation                 | Igor      | Week_4  |
-| 2020-10-22 | CANCELED                            |           |         |
-| 2020-11-05 | CANCELED                            |           |         |
-| 2020-11-18 | Data Transformation                 | Igor      |         |
-| 2020-12-02 | CANCELED                            |           |         |
-| 2020-12-16 | Data Transformation                 | Igor      |         |
-| 2021-01-13 | Exploratory Data Analysis           | Izabela   | Week_5  |
-| 2021-01-20 | Exploratory Data Analysis           | Izabela   |         |
-| 2021-01-28 | Exploratory Data Analysis           | Daniela   |         |
-| 2021-02-12 | Exploratory Data Analysis           | Izabela   |         |
-| 2021-02-26 | Tibbles                             | Lais M.   | Week_6  |
-| 2021-03-23 | Data import                         | Franciele | Week_7  |
-| 2021-04-06 | Data import                         | Franciele |         |
-| 2021-04-20 | Tidy data                           | Loren     | Week_8  |
-| 2021-05-04 | Relational data                     | Izabela   | Week_9  |
-| 2021-05-18 | Strings                             | Gladis    | Week_10 |
-| 2021-05-25 | Strings                             | Gladis    | Week_10 |
-| 2021-06-01 | Factors                             |    Liz    | Week_11 |
-| 2021-06-15 | Dates and times                     |    Igor   | Week_12 |
-| 2021-06-29 | Pipes                               | Marcel    | Week_13 |
-| 2021-07-13 | Functions                           | Lais m.   | Week_14 |
-| 2021-07-27 | Vectors                             | Loren     | Week_15 |
-| 2021-08-10 | Iteration                           | Izabela   | Week_16 |
-| 2021-08-24 | Model basics                        |  Gladis   | Week_17 |
-| 2021-09-07 | Model building                      |  Liz      | Week_18 |
-| 2021-09-21 | Many models                         |  Igor     | Week_19 |
-| 2021-10-05 | R Markdown                          |  Marcel   | Week_20 |
-| 2021-10-19 | Graphics for communication          |  Lais M   | Week_21 |
-| 2021-11-02 | R Markdown formats                  | Loren     | Week_22 |
-| 2021-11-16 | R Markdown workflow                 |  Izabela  | Week_23 |
-| 2021-11-30 | Conclusion                          |  Gladis   | Week_24 |
+|    Date    |                Chapter               | Presenter |
+|:----------:|:------------------------------------:|:---------:|
+| 2021-01-07 | Introduction                         | Daniela   |
+| 2021-01-21 | Workflows: Basics, scripts, projects | Liz       |
+| 2021-02-04 | Data Visualization                   | Marcel    |
+| 2021-02-18 | Data Visualization                   | Marcel    |
+| 2021-03-04 | Data Transformation                  | Igor      |
+| 2021-03-18 | Data Transformation                  | Igor      |
+| 2021-04-01 | Exploratory Data Analysis            | Izabela   |
+| 2021-04-15 | Tibbles                              | Lais M.   |
+| 2021-04-29 | Data import                          | Franciele |
+| 2021-05-13 | Tidy data                            | Loren     |
+| 2021-05-27 | Strings                              | Gladis    |
+| 2021-06-10 | Factors                              | Liz       |
+| 2021-06-24 | Dates and times                      | Igor      |
+| 2021-07-08 | Pipes                                | Marcel    |
+| 2021-07-22 | Functions                            | Lais M.   |
+| 2021-08-05 | Vectors                              | Loren     |
+| 2021-08-19 | Iteration                            | Izabela   |
+| 2021-09-02 | Model basics                         | Gladis    |
+| 2021-09-16 | Model building                       | Liz       |
+| 2021-09-30 | Many models                          | Igor      |
+| 2021-10-14 | R Markdown                           | Marcel    |
+| 2021-10-28 | Graphics for communication           | Lais M    |
+| 2021-11-11 | R Markdown formats                   | Loren     |
+| 2021-11-25 | R Markdown workflow                  | Izabela   |
+| 2021-12-09 | Conclusion                           | Gladis    |
